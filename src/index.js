@@ -11,6 +11,7 @@ connectDB("mongodb://127.0.0.1:27017/restapi");
 
 // Set up middleware to parse JSON and URL-encoded data
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Routes
 app.use("/api/user", userRouter);
