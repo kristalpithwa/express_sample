@@ -1,4 +1,4 @@
-const users = require("../models/users");
+import users from "../models/users";
 
 async function getAllUsers(req, res) {
   try {
@@ -94,10 +94,4 @@ async function deleteUserById(req, res) {
   }
 }
 
-module.exports = {
-  getAllUsers,
-  createUser,
-  getUserById,
-  updateUserById,
-  deleteUserById,
-};
+export { getAllUsers, createUser, getUserById, updateUserById, deleteUserById };
