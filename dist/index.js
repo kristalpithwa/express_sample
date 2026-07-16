@@ -5,10 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const db_1 = __importDefault(require("./config/db"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.listen(5000, () => {
     console.log("Server running on 5000");
 });
+(0, db_1.default)("mongodb://localhost:27017/user_management");
 exports.default = app;

@@ -1,6 +1,7 @@
+import { Request, Response } from "express";
 import users from "../models/users";
 
-async function getAllUsers(req, res) {
+async function getAllUsers(req: Request, res: Response) {
   try {
     const data = await users.find();
     res.json(data);
@@ -10,7 +11,7 @@ async function getAllUsers(req, res) {
   }
 }
 
-async function createUser(req, res) {
+async function createUser(req: Request, res: Response) {
   const { first_name, last_name, email, gender } = req?.body;
 
   const newUser = {
@@ -26,8 +27,8 @@ async function createUser(req, res) {
       user: result,
       message: "User created successfully",
     });
-  } catch (error) {
-    if (error.code === 11000) {
+  } catch (error: any) {
+    if (error?.code === 11000) {
       return res.status(400).json({
         success: false,
         message: "Email already exists",
@@ -41,13 +42,13 @@ async function createUser(req, res) {
   }
 }
 
-async function getUserById(req, res) {
+async function getUserById(req: Request, res: Response) {
   const { id } = req.params;
 
   try {
     const result = await users.findById(id);
     res.status(200).json(result);
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
       message: error.message,
@@ -55,7 +56,7 @@ async function getUserById(req, res) {
   }
 }
 
-async function updateUserById(req, res) {
+async function updateUserById(req: Request, res: Response) {
   const { id } = req.params;
 
   try {
@@ -63,7 +64,7 @@ async function updateUserById(req, res) {
       new: true,
     });
     res.status(200).json(result);
-  } catch (error) {
+  } catch (error: any) {
     console.log("error =>", error);
     res.status(500).json({
       success: false,
@@ -72,7 +73,7 @@ async function updateUserById(req, res) {
   }
 }
 
-async function deleteUserById(req, res) {
+async function deleteUserById(req: Request, res: Response) {
   const { id } = req.params;
 
   try {
